@@ -171,10 +171,10 @@ class Weather():
         try:
             wind_average = wind_direction_byo.get_average(store_directions)
         except ZeroDivisionError:
-            print("There was a division by zero error")
+            logerr("there was a division by zero error calculating the average winddir")
             wind_average = None
         except:
-            print("Something went wrong calculating the average wind direction")
+            logerr("something went wrong calculating the average wind direction")
             wind_average = None
 
         wind_gust = max(store_speeds)
