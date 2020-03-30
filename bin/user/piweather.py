@@ -158,23 +158,23 @@ class Weather():
         store_speeds = []
         store_directions = []
         start_time = time.time()
-        while time.time() - start_time <= self.interval:
-            wind_start_time = time.time()
-            self.reset_wind()
-            #time.sleep(wind_interval)
-            while time.time() - wind_start_time <= self.wind_interval:
-                store_directions.append(wind_direction_byo.get_value())
-
-            final_speed = self.calculate_speed(self.wind_interval)
-            store_speeds.append(final_speed)
-
         try:
+            while time.time() - start_time <= self.interval:
+                wind_start_time = time.time()
+                self.reset_wind()
+                #time.sleep(wind_interval)
+                while time.time() - wind_start_time <= self.wind_interval:
+                    store_directions.append(wind_direction_byo.get_value())
+
+                final_speed = self.calculate_speed(self.wind_interval)
+                store_speeds.append(final_speed)
+
             wind_average = wind_direction_byo.get_average(store_directions)
         except ZeroDivisionError:
-            logerr("there was a division by zero error calculating the average winddir")
+            logerr("there was a division by zero error calculating wind data")
             wind_average = None
         except:
-            logerr("something went wrong calculating the average wind direction")
+            logerr("something went wrong calculating wind data")
             wind_average = None
 
         wind_gust = max(store_speeds)
