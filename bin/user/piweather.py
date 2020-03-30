@@ -188,7 +188,7 @@ class Weather():
 
         data['outTemp'] = ambient_temperature
         data['outHumidity'] = humidity
-        data['barometer'] = pressure
+        data['pressure'] = pressure
         data['soilTemp1'] = ground_temperature
         data['windSpeed'] = wind_speed
         data['windGust'] = wind_gust
