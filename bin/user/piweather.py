@@ -103,8 +103,9 @@ class PiWeatherDriver(weewx.drivers.AbstractDevice):
             _packet = {'dateTime': int(time.time() + 0.5),
                        'usUnits': weewx.METRICWX}
             for vname in data:
-                #_packet[self.label_map.get(vname, vname)] = _get_as_float(data, vname)
-                _packet[vname] = _get_as_float(data, vname)
+                _packet[vname] = data[vname]
+                if data[vname] is not None:
+                    _packet[vname] = _get_as_float(data, vname)
 
             yield _packet
 
