@@ -155,7 +155,8 @@ class Weather():
     def reset_bucket(self):
         self.tip_count = 0
 
-    def get_values(self):
+
+    def get_wind_values(self):
         store_speeds = []
         store_directions = []
         start_time = time.time()
@@ -180,9 +181,20 @@ class Weather():
 
         wind_gust = max(store_speeds)
         wind_speed = numpy.mean(store_speeds)
+        
+        return wind_gust, wind_speed
+
+    def get_bme_values():
+        return bme280_sensor.read_all()
+
+    def get_values(self):
+        wind_gust, wind_speed = get_wind_values()
+
         rainfall = self.tip_count * self.bucket_size 
         self.reset_bucket()
-        humidity, pressure, ambient_temperature = bme280_sensor.read_all()
+
+        humidity, pressure, ambient_temperature = get_bme_values()
+
         ground_temperature = self.ground_thermometer.read_temp()
 
         data = {}
