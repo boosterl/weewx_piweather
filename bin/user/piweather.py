@@ -182,7 +182,17 @@ class Weather():
         wind_speed = numpy.mean(store_speeds)
         rainfall = self.tip_count * self.bucket_size 
         self.reset_bucket()
-        humidity, pressure, ambient_temperature = bme280_sensor.read_all()
+
+        humidity, pressure, ambient_temperature = None, None, None
+        try:
+            humidity, pressure, ambient_temperature = bme280_sensor.read_all()
+        except OSError:
+            logerr("something went wrong communicating with bme280 sensor")
+            bme280_sensor.reset_sensor()
+        except:
+            logerr("something went wrong communicating with bme280 sensor")
+            bme280_sensor.reset_sensor()
+
         ground_temperature = self.ground_thermometer.read_temp()
 
         data = {}
