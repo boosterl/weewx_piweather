@@ -174,9 +174,6 @@ class Weather():
         except ZeroDivisionError:
             logerr("there was a division by zero error calculating wind data")
             wind_average = None
-        except:
-            logerr("something went wrong calculating wind data")
-            wind_average = None
 
         wind_gust = max(store_speeds)
         wind_speed = numpy.mean(store_speeds)
@@ -189,7 +186,7 @@ class Weather():
         except OSError:
             logerr("something went wrong communicating with bme280 sensor")
             bme280_sensor.reset_sensor()
-        except:
+        except IOError:
             logerr("something went wrong communicating with bme280 sensor")
             bme280_sensor.reset_sensor()
 
