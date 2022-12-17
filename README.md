@@ -1,3 +1,9 @@
+# ⚠ DEPRECATION NOTICE ⚠
+
+This driver is not in development anymore. And is not compatible with Python 3
+and WeeWX >= 4. Please use an up-to-date driver like the [AlgerP572/WeatherPi](https://github.com/AlgerP572/WeatherPi)
+driver.
+
 # weewx_piweather
 weewx driver for custom Raspberry Pi based weather stations
 
